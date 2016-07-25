@@ -7,7 +7,10 @@ let Project = function(projectName, technology, github) {
   this.projectName = projectName;
   this.technology = technology;
   this.github = github;
+};
 
+Project.prototype.getNewId = function () {
+  this.id = uuid.v1();
 };
 
 module.exports = Project;

@@ -17,16 +17,20 @@ httpMethods.map((method) => {
 
 Route.prototype.init = function () {
   return (req, res) => {
-    if (typeof this[req.method][req.url] === 'function') {
-      this[req.method][req.url](req,res);
+    if (typeof this[req.method][req.url.split('?')[0]] === 'function') {
+      this[req.method][req.url.split('?')[0]](req, res);
     } else {
-      res.writeHead(404, {
-        'Content-Type': 'text/plain'
-      });
-      res.write('404 Not Found');
-      res.end();
+      this.notFound404(req, res);
     }
   };
+};
+
+Route.prototype.notFound404 = function (req, res) {
+  res.writeHead(404, {
+    'Content-Type': 'text/plain'
+  });
+  res.write('404 Not Found');
+  res.end();
 };
 
 module.exports = Route;
