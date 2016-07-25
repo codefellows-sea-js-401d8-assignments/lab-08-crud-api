@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/vienly/lab-08-crud-api#readme",
   "dependencies": {
-    "vien-simple-router": "^1.2.0"
+    "vien-simple-router": "^1.2.1"
   },
   "devDependencies": {
     "nodemon": "^1.9.2"
