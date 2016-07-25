@@ -1,5 +1,5 @@
 {
-  "projectName": "My HNG",
-  "technology": ["Python (Flask)", "SQL (MySQL + SQLAlchemy)", "CSS (Bootstrap + Insignia bootstrap admin theme)", "JavaScript (jQuery, WebSockets)", "Nginx", "Gunicorn", "AWS EC2 ubuntu instance"],
-  "github": "https://github.com/steventhan/my-hng"
+  "projectName": "HNG Appliances Website",
+  "technology": ["PHP", "SQL (MySQL)", "CSS (Bootstrap)", "JavaScript (jQuery, Google API)", "Inmotion shared hosting"],
+  "github": "https://github.com/steventhan"
 }
