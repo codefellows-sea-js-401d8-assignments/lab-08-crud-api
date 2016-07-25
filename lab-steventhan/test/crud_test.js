@@ -4,9 +4,28 @@ const chai = require('chai');
 chai.use(require('chai-http'));
 const expect = chai.expect;
 const request = chai.request;
+const server = require('../_server');
 
 let port = 8000;
-require('../_server').listen(port);
+before(() => {
+  server.listen(port);
+});
+
+after(() => {
+  server.close();
+});
+
+describe('the 404 not found', () => {
+  it('should return a 404 if route is not registered', (done) => {
+    request(`localhost:${port}`)
+      .get('/randompage')
+      .end((err, res) => {
+        expect(res).to.have.status(404);
+        expect(res.text).to.eql('404 Not Found');
+        done();
+      });
+  });
+});
 
 describe('the GET method', () => {
   it('GET /api/projects?id=11111 should be a 404 for valid request made with an id that was not found', (done) => {
