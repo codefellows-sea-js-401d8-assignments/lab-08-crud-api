@@ -133,7 +133,9 @@ app.projectsPut = (req, res) => {
           parsedJson.projectName !== undefined &&
           parsedJson.technology !== undefined &&
           parsedJson.github !== undefined) {
-        app.projectsDatabase[projectId] = parsedJson;
+        app.projectsDatabase[projectId].projectName = parsedJson.projectName;
+        app.projectsDatabase[projectId].technology = parsedJson.technology;
+        app.projectsDatabase[projectId].github = parsedJson.github;
         responseJson.status = 200;
         responseJson.msg = 'Success';
         res.writeHead(responseJson.status, {
