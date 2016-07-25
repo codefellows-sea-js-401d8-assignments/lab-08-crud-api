@@ -2,27 +2,25 @@
 
 const http = require('http');
 const Router = require('./route/router');
-const uuid = require('node-uuid');
-const randomName = require('sillyname');
-
+const ObjConst = require('./model/objConst');
 let routes = new Router('/api');
-routes.id = uuid.v1();
-routes.creationDate = Date.now();
-routes.name = randomName();
+let infoObject = {};
 
-routes.post('/testingpost', (req, res) => {
+routes.post('/simple-resource-name', (req, res) => {
+  const obj = new ObjConst(req.body.name, req.body.creationDate);
+  infoObject[obj.id] = req.body.id;
   res.writeHead(200, {
     'Content-Type': 'application/json'
   });
-  res.write('{"msg": "post-request"}');
+  res.write(obj);
   res.end();
 });
 
-routes.get('/simple-resource-name?id=' + routes.id, (req, res) => {
+routes.get('/simple-resource-name', (req, res) => {
   res.writeHead(200, {
     'Content-Type':'text/plain'
   });
-  res.write(routes.id, routes.name, routes.creationDate);
+  res.write('test');
   res.end();
 });
 

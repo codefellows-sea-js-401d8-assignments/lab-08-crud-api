@@ -29,7 +29,7 @@ describe('GET Requests', () => {
   });
   it('Test GET 200', (done) => {
     request(server)
-    .get('/api/simple-resource-name?id=' + id)
+    .get('/api/simple-resource-name')
     .end((err, res) => {
       expect(err).to.eql(null);
       expect(res).to.have.status(200);
@@ -43,11 +43,11 @@ describe('POST Requests', () => {
 
   it('Test POST 200', (done) => {
     request(server)
-      .post('/')
+      .post('/api/simple-resource-name')
       .end((err, res) => {
         expect(err).to.eql(null);
         expect(res).to.have.status(200);
-        expect(res.text).to.eql('{"msg": "testing-post"}');
+        expect(res.text).to.eql('{"msg": "hello world"}');
         done();
       });
   });
@@ -62,8 +62,6 @@ describe('POST Requests', () => {
       });
   });
 });
-
-
 
 describe('DELETE Requests', () => {
   it('Test DELETE', (done) => {

@@ -19,20 +19,13 @@ Router.prototype.route = function() {
   return (req, res) => {
     if (typeof this.routes[req.method][req.url] === 'function') {
       this.routes[req.method][req.url](req, res);
+    } else{
+      res.writeHead(404, {
+        'Content-Type': 'text/plain'
+      });
+      res.write('not found');
+      res.end();
     }
-    // else if () {
-    //   res.writeHead(400, {
-    //     'Content-Type': 'text/plain'
-    //   });
-    //   res.write('bad request');
-    //   res.end();
-    // }
-    // else {
-    res.writeHead(404, {
-      'Content-Type': 'text/plain'
-    });
-    res.write('not found');
-    res.end();
   };
 };
 
