@@ -22,7 +22,7 @@ POST: `curl -H "Content-Type: application/json" -X POST -d '{"name":"Charizard",
 
 To retrieve a Pokemon follow the below format, "name" must match pokemon your created with POST.
 
-GET: `curl -i -H "Accept: application/json" "http://localhost:3000/api/pokemon{"name":"Charizard"}`
+GET: `curl http://localhost:3000/api/pokemon?name=Charizard`
 
 
 `Jeff Gebhardt - CF JS 401`

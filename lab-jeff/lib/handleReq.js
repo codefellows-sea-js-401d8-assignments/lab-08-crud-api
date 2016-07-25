@@ -18,7 +18,7 @@ module.exports = exports = function(req, res){
         });
 
         pokemonCollection[uuid.v4()] = new Pokemon(json.name, json.type);
-
+        console.log(pokemonCollection);
         res.write('Finished writing new Pokemon.\r\n');
         res.end();
       }, (err) => {
@@ -42,6 +42,7 @@ module.exports = exports = function(req, res){
       if(pokemonCollection[key].pokeName == queryData.name) {
         res.write('You requested a ' + pokemonCollection[key].pokeName + ' which is type ' + pokemonCollection[key].pokeType + '.\r\n');
       }
+
     }
     res.end();
   }
