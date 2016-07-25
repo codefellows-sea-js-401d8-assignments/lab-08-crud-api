@@ -5,6 +5,8 @@ const Router = require('vien-simple-router');
 
 let router = new Router('/api');
 
+// testing purposes only
+// todo: move all methods into route definition under /route
 router.get('/hello', (req, res) => {
   res.writeHead(200, {
     'Content-Type': 'application/json'

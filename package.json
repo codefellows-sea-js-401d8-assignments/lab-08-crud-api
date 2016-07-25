@@ -24,5 +24,7 @@
   "dependencies": {
     "vien-simple-router": "^1.2.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "nodemon": "^1.9.2"
+  }
 }
