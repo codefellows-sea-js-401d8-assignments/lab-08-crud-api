@@ -26,6 +26,10 @@ router.delete('/api/projects', (req, res) => {
   app.projectsDelete(req, res);
 });
 
+router.put('/api/projects', (req, res) => {
+  app.projectsPut(req, res);
+});
+
 let server = http.createServer(router.init());
 
 module.exports = server;

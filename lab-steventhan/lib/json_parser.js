@@ -1,6 +1,6 @@
 'use strict';
 
-let jsonPromise = (req) => {
+let jsonParser = (req) => {
   return new Promise((resolve, reject) => {
     let jsonString = '';
     req.on('data', (data) => {
@@ -17,4 +17,4 @@ let jsonPromise = (req) => {
   });
 };
 
-module.exports = jsonPromise;
+module.exports = jsonParser;

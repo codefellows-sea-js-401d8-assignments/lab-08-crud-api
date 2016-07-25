@@ -124,4 +124,41 @@ app.projectsDelete = (req, res) => {
   res.end();
 };
 
+app.projectsPut = (req, res) => {
+  let projectId = url.parse(req.url, true).query.id;
+  let responseJson = {};
+  jsonParser(req)
+    .then((parsedJson) => {
+      if  (app.projectsDatabase[projectId] !== undefined &&
+          parsedJson.projectName !== undefined &&
+          parsedJson.technology !== undefined &&
+          parsedJson.github !== undefined) {
+        app.projectsDatabase[projectId] = parsedJson;
+        responseJson.status = 200;
+        responseJson.msg = 'Success';
+        res.writeHead(responseJson.status, {
+          'Content-Type': 'application/json'
+        });
+        res.write(JSON.stringify(parsedJson));
+      } else {
+        responseJson.status = 404;
+        responseJson.msg = 'Project id not found';
+        res.writeHead(responseJson.status, {
+          'Content-Type': 'application/json'
+        });
+        res.write(JSON.stringify(responseJson));
+      }
+    }, (err) => {
+      responseJson.status = 400;
+      responseJson.msg = 'Error, ' + err.message;
+      res.writeHead(responseJson.status, {
+        'Content-Type': 'application/json'
+      });
+      res.write(JSON.stringify(responseJson));
+    }).then(() => {
+      res.end();
+    });
+
+};
+
 module.exports = app;

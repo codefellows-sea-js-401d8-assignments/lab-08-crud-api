@@ -87,3 +87,46 @@ describe('the POST method', () => {
       });
   });
 });
+
+describe('the PUT method', () => {
+  it('PUT /api/projects should be a 400 bad request if invalid json was put', (done) => {
+    request(`localhost:${port}`)
+      .put('/api/projects?id=2c45ede0-523a-11e6-b124-27e69760e669')
+      .send()
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+        done();
+      });
+  });
+
+  it('PUT /api/projects should be a 404 not found if wrong id is passed in', (done) => {
+    request(`localhost:${port}`)
+      .put('/api/projects?id=random')
+      .send({
+        projectName: 'Test',
+        technology: [1, 2, 3],
+        github: 'test url'
+      })
+      .end((err, res) => {
+        expect(res).to.have.status(404);
+        done();
+      });
+  });
+
+  it('PUT /api/projects should update the id if valid object and id are sent', (done) => {
+    request(`localhost:${port}`)
+      .put('/api/projects?id=2c45ede0-523a-11e6-b124-27e69760e669')
+      .send({
+        projectName: 'Test',
+        technology: [1, 2, 3],
+        github: 'test url'
+      })
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(JSON.parse(res.text).projectName).to.eql('Test');
+        expect(JSON.parse(res.text).technology.length).to.eql(3);
+        expect(JSON.parse(res.text).github).to.eql('test url');
+        done();
+      });
+  });
+});

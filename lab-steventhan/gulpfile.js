@@ -3,6 +3,7 @@
 const gulp = require('gulp');
 const eslint = require('gulp-eslint');
 const mocha = require('gulp-mocha');
+const nodemon = require('gulp-nodemon');
 const fs = require('fs');
 
 
@@ -33,6 +34,14 @@ gulp.task('mocha', () => {
     .pipe(mocha());
 });
 
+gulp.task('server:start', function () {
+  nodemon({
+    script: '_server.js'
+  , ext: 'js html'
+  , env: { 'NODE_ENV': 'development' }
+  });
+});
+
 gulp.task('lint', ['lint:app', 'lint:test']);
 
-gulp.task('default', ['lint', 'mocha']);
+gulp.task('default', ['lint', 'mocha', 'server:start']);
