@@ -6,7 +6,6 @@ const response = require('vien-simple-router').response;
 const movieList = {};
 
 module.exports = function(router) {
-
   router.get('/movie', (req, res) => {
     if(req.url && req.url.query.id) {
       let movie = movieList[req.url.query.id];
@@ -36,7 +35,6 @@ module.exports = function(router) {
       movie.rating = req.body.rating || movie.rating;
       return response(200, movie)(res);
     }
-
     return response(400, 'bad request')(res);
   });
 
