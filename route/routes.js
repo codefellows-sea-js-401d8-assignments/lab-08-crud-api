@@ -38,16 +38,6 @@ module.exports = function(router) {
     }
 
     return response(400, 'bad request')(res);
-
-    // if(req.body && req.body.id) {
-    //   let movie = movieList[req.body.id];
-    //   if(movie) {
-    //     movie.name = req.body.name || movie.name;
-    //     movie.rating = req.body.rating || movie.rating;
-    //     return response(200, movie)(res);
-    //   }
-    //   return response(400, 'bad request')(res);
-    // }
   });
 
   router.delete('/movie', (req, res) => {
