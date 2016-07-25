@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 const gulp = require('gulp');
 const eslint = require('gulp-eslint');
 const mocha = require('gulp-mocha');
@@ -5,36 +7,19 @@ const mocha = require('gulp-mocha');
 const srcFiles = ['lib/**/*.js', 'bin/*'];
 const testFiles = 'test/**/*.js';
 
-const baseLinterOptions = {
-  rules: {
-    'no-console': 0,
-    indent: [2, 2],
-    quotes: [2, 'single'],
-    'linebreak-style': [2, 'unix'],
-    semi: [2, 'always'],
-    'no-undef': 2
-  },
-  envs: ['node', 'es6'],
-  parserOptions: {
-    ecmaVersion: 6,
-    ecmaFeatures: {
-      impliedStrict: true
-    }
-  },
-  extends: 'eslint:recommended'
-};
+const eslintRules = JSON.parse(fs.readFileSync('./.eslintrc'));
 
 // Linter tasks -------------------------------------------
 gulp.task('lint:src', () => {
   return gulp.src(srcFiles)
-    .pipe(eslint(baseLinterOptions))
+    .pipe(eslint(eslintRules))
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());
 });
 
 gulp.task('lint:test', () => {
   return gulp.src(testFiles)
-    .pipe(eslint(Object.assign(baseLinterOptions, {
+    .pipe(eslint(Object.assign(eslintRules, {
       envs: ['node', 'es6', 'mocha']
     })))
     .pipe(eslint.format())
