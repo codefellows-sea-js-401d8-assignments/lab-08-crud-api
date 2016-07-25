@@ -3,6 +3,7 @@ const fs = require('fs');
 const gulp = require('gulp');
 const eslint = require('gulp-eslint');
 const mocha = require('gulp-mocha');
+const nodemon = require('gulp-nodemon');
 
 const srcFiles = ['lib/**/*.js', 'bin/*'];
 const testFiles = 'test/**/*.js';
@@ -55,5 +56,12 @@ gulp.task('test:watch', ['test'], () => {
     });
 });
 
+// Server tasks -------------------------------------------
+gulp.task('start', ['lint', 'test'], () => {
+  nodemon({
+    script: './lib/index.js',
+  });
+});
+
 gulp.task('default', ['lint', 'test']);
-gulp.task('watch', ['lint:watch', 'test:watch']);
+gulp.task('watch', ['lint:watch', 'test:watch', 'start']);
