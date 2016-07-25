@@ -1,0 +1,28 @@
+{
+  "name": "lab-08-crud-api",
+  "version": "1.0.0",
+  "description": "![cf](https://i.imgur.com/7v5ASc8.png) lab-08-in-memory-single-resource-api ======",
+  "main": "gulpfile.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vienly/lab-08-crud-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vienly/lab-08-crud-api/issues"
+  },
+  "homepage": "https://github.com/vienly/lab-08-crud-api#readme",
+  "dependencies": {
+    "vien-simple-router": "^1.1.2"
+  },
+  "devDependencies": {}
+}
