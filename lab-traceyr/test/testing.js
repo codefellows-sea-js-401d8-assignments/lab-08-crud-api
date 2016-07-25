@@ -1,6 +1,7 @@
 'use strict';
-const net = require('net');
-const expect = require('chai').expect;
+
+const chai = require('chai');
+const chaiHttp = requre('chai-http');
 
 const server = require('../server');
 const port = 5000;
@@ -11,5 +12,8 @@ describe('testing ', () => {
   });
   after((done) =>{
     server.close(done);
+  });
+  it('this', () =>{
+    expect(true).to.eql(true);
   });
 });
