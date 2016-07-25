@@ -2,11 +2,18 @@ const http = require('http');
 
 const SimpleRouter = require('simple-router');
 
-const router = new SimpleRouter();
+const Pokemon = require('./model/pokemon');
 
-router.get('/', function(req, res) {
-  res.end('HAHA');
+const POKEMON = {};
+
+const router = new SimpleRouter({
+  rootPath: '/api',
+});
+
+router.post('/pokemon', SimpleRouter.jsonParser(), (req, res) => {
+  const pokemon = new Pokemon(req.body.name, req.body.number, req.body.height);
+  POKEMON[pokemon.id] = pokemon;
+  res.json(pokemon);
 });
 
 module.exports = http.createServer(router.route());
-
