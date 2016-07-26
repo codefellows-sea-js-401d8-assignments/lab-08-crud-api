@@ -4,7 +4,7 @@ const http = require('http');
 const Constructor = require('../model/constructor.js');
 const bodyParser = require('./bodyParser.js');
 const urlParser = require('./urlParser.js');
-const port = 3000;
+const port = 5000;
 
 var all = {
   squirtle: {

@@ -5,20 +5,20 @@ const chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 const expect = chai.expect;
 const request = chai.request;
-const server = require('../lib/server.js');
-const port = 3000;
+const server = require('../lib/_server.js');
+const port = 5000;
 
 describe('Crud API testing', () => {
-  before(function(done) {
+  beforeEach(function(done) {
     server.listen(port, done);
   });
 
-  after(function(done) {
+  afterEach(function(done) {
     server.close(done);
   });
 
-  it('should return a status code of 404 for unregistered routes', (done) => {
-    request('localhost:3000')
+  it('test 1: should return a status code of 404 for unregistered routes', (done) => {
+    request('localhost:' + port)
       .get('/bieber')
       .end(function(err) {
         expect(err).to.have.status(404, 'File Not Found');
@@ -26,8 +26,8 @@ describe('Crud API testing', () => {
       });
   });
 
-  it('should return a status code of 404 for a valid request with an id that was not found', (done) => {
-    request('localhost:3000/api')
+  it('test 2: should return a status code of 404 for a valid request with an id that was not found', (done) => {
+    request('localhost:' + port + '/api')
       .get('/?pokemon=ivysaur')
       .end(function(err) {
         expect(err).to.have.status(404, 'File Not Found');
@@ -35,8 +35,8 @@ describe('Crud API testing', () => {
       });
   });
 
-  it('should return a status code of 400 for requests with no id', (done) => {
-    request('localhost:3000/api')
+  it('test 3: should return a status code of 400 for requests with no id', (done) => {
+    request('localhost:' + port + '/api')
       .get('/?pokemon=')
       .end(function(err) {
         expect(err).to.have.status(400, 'No id provided');
@@ -44,8 +44,8 @@ describe('Crud API testing', () => {
       });
   });
 
-  it('should return a status code of 200 for requests with valid id', (done) => {
-    request('localhost:3000/api')
+  it('test 4: should return a status code of 200 for requests with valid id', (done) => {
+    request('localhost:' + port + '/api')
       .get('/?pokemon=squirtle')
       .end(function(err, res) {
         expect(err).to.eql(null, 'the error should be null');
@@ -54,8 +54,8 @@ describe('Crud API testing', () => {
       });
   });
 
-  it('should return a status code of 400 if no/invalid body provided for POST request', (done) => {
-    request('localhost:3000/api')
+  it('test 5: should return a status code of 400 if no/invalid body provided for POST request', (done) => {
+    request('localhost:' + port + '/api')
       .post('/?pokemon=charmander')
       .end(function(err) {
         expect(err).to.have.status(400, 'no body provided');
@@ -63,8 +63,8 @@ describe('Crud API testing', () => {
       });
   });
 
-  it('should return a status code of 200 if there is a valid body', (done) => {
-    request('localhost:3000/api')
+  it('test 6: should return a status code of 200 if there is a valid body', (done) => {
+    request('localhost:' + port + '/api')
       .post('/?pokemon=charmander')
       .send({
         name: 'charmander',
@@ -78,8 +78,8 @@ describe('Crud API testing', () => {
       });
   });
 
-  it('should return a status code of 200 for valid PUT body', (done) => {
-    request('localhost:3000/api')
+  it('test 7: should return a status code of 200 for valid PUT body', (done) => {
+    request('localhost:' + port + '/api')
       .put('/?pokemon=squirtle')
       .send({
         name: 'Justin Bieber',
@@ -94,13 +94,28 @@ describe('Crud API testing', () => {
       });
   });
 
-  it('should return a status code of 400 if no/invalid body provided for PUT request', (done) => {
-    request('localhost:3000/api')
-      .put('/?pokemon=charmander')
+  it('test 8: should return a status code of 400 if no/invalid body provided for PUT request', (done) => {
+    request('localhost:' + port + '/api')
+      .put('/?pokemon=squirtle')
       .end(function(err) {
         expect(err).to.have.status(400, 'no body provided');
+        done();
       });
-    done();
+  });
+
+  it('test 9: should return a status code of 404 for a valid request with an id that was not found', (done) => {
+    request('localhost:' + port + '/api')
+      .put('/?pokemon=ivysaur')
+      .send({
+        name: 'Justin Bieber',
+        type: 'Pop Singer',
+        'final evolution': 'off the charts',
+        uuid: 'the Biebs'
+      })
+      .end(function(err) {
+        expect(err).to.have.status(404, 'the status should be 404');
+        done();
+      });
   });
 
 });
