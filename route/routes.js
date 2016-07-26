@@ -9,18 +9,18 @@ module.exports = function(router) {
   router.get('/movie', (req, res) => {
     if(req.url && req.url.query.id) {
       let movie = movieList[req.url.query.id];
-      return response(200, movie)(res);
+      response(200, movie)(res);
     }
-    return response(400, 'bad request')(res);
+    response(400, 'bad request')(res);
   });
 
   router.post('/movie', (req, res) => {
     if(req.body && req.body.name && req.body.rating) {
       let newMovie = new Movie(req.body.name, req.body.rating);
       movieList[newMovie.id] = newMovie;
-      return response(200, newMovie)(res);
+      response(200, newMovie)(res);
     }
-    return response(400, 'bad request')(res);
+    response(400, 'bad request')(res);
   });
 
   router.put('/movie', (req, res) => {
@@ -33,9 +33,9 @@ module.exports = function(router) {
     if(movie && req.body) {
       movie.name = req.body.name || movie.name;
       movie.rating = req.body.rating || movie.rating;
-      return response(200, movie)(res);
+      response(200, movie)(res);
     }
-    return response(400, 'bad request')(res);
+    response(400, 'bad request')(res);
   });
 
   router.delete('/movie', (req, res) => {
@@ -43,17 +43,16 @@ module.exports = function(router) {
       let movie = movieList[req.url.query.id];
       if(movie) {
         delete movieList[req.url.query.id];
-        return response(204, null)(res);
+        response(204, null)(res);
       }
-      return response(400, 'bad request')(res);
+      response(400, 'bad request')(res);
     }
   });
 
   router.get('/movie/all', (req, res) => {
-    console.log(movieList);
     let allMovies = Object.keys(movieList).map((id) => {
       return movieList[id];
     });
-    return response(200, allMovies)(res);
+    response(200, allMovies)(res);
   });
 };
