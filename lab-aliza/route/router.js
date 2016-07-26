@@ -17,9 +17,9 @@ methods.forEach((method) => {
 
 Router.prototype.route = function() {
   return (req, res) => {
-    if (typeof this.routes[req.method][req.url] === 'function') {
+    if(typeof this.routes[req.method][req.url] === 'function') {
       this.routes[req.method][req.url](req, res);
-    } else{
+    }else{
       res.writeHead(404, {
         'Content-Type': 'text/plain'
       });
