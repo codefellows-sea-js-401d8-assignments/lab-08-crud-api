@@ -25,4 +25,4 @@ gulp.task('test', () => {
   .pipe(mocha({reporter: 'nyan'}));
 });
 
-gulp.task('default', ['lint', 'test', 'nodemon']);
+gulp.task('default', ['lint', 'test']);

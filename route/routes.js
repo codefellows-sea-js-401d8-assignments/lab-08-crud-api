@@ -5,12 +5,18 @@ const response = require('vien-simple-router').response;
 
 const movieList = {};
 
+let testID = '123';
+movieList[testID] = new Movie('test', 322);
+
 module.exports = function(router) {
 
   router.get('/movie', (req, res) => {
     if(req.url && req.url.query.id) {
       let movie = movieList[req.url.query.id];
-      return response(200, movie)(res);
+      if (movie)
+        return response(200, movie)(res);
+      else
+        return response(404, 'movie not found')(res);
     }
     return response(400, 'bad request')(res);
   });
@@ -51,7 +57,6 @@ module.exports = function(router) {
   });
 
   router.get('/movie/all', (req, res) => {
-    console.log(movieList);
     let allMovies = Object.keys(movieList).map((id) => {
       return movieList[id];
     });
