@@ -16,7 +16,7 @@ describe('Crud API testing', () => {
   after(function(done) {
     server.close(done);
   });
-  // Test 1
+
   it('should return a status code of 404 for unregistered routes', (done) => {
     request('localhost:3000')
       .get('/bieber')
@@ -25,7 +25,7 @@ describe('Crud API testing', () => {
         done();
       });
   });
-  // Test 2
+
   it('should return a status code of 404 for a valid request with an id that was not found', (done) => {
     request('localhost:3000/api')
       .get('/?pokemon=ivysaur')
@@ -34,7 +34,7 @@ describe('Crud API testing', () => {
         done();
       });
   });
-  // Test 3
+
   it('should return a status code of 400 for requests with no id', (done) => {
     request('localhost:3000/api')
       .get('/?pokemon=')
@@ -43,7 +43,7 @@ describe('Crud API testing', () => {
         done();
       });
   });
-  // Test 4
+
   it('should return a status code of 200 for requests with valid id', (done) => {
     request('localhost:3000/api')
       .get('/?pokemon=squirtle')
@@ -53,7 +53,7 @@ describe('Crud API testing', () => {
         done();
       });
   });
-  // Test 5
+
   it('should return a status code of 400 if no/invalid body provided for POST request', (done) => {
     request('localhost:3000/api')
       .post('/?pokemon=charmander')
@@ -62,7 +62,7 @@ describe('Crud API testing', () => {
         done();
       });
   });
-  // Test 6
+
   it('should return a status code of 200 if there is a valid body', (done) => {
     request('localhost:3000/api')
       .post('/?pokemon=charmander')
@@ -77,7 +77,7 @@ describe('Crud API testing', () => {
         done();
       });
   });
-  //Test 7
+
   it('should return a status code of 200 for valid PUT body', (done) => {
     request('localhost:3000/api')
       .put('/?pokemon=squirtle')
@@ -93,7 +93,7 @@ describe('Crud API testing', () => {
         done();
       });
   });
-  // Test 8
+
   it('should return a status code of 400 if no/invalid body provided for PUT request', (done) => {
     request('localhost:3000/api')
       .put('/?pokemon=charmander')

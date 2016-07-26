@@ -17,7 +17,6 @@ describe('Crud API testing', () => {
     server.close(done);
   });
 
-  // Test 9
   it('should return a status code of 404 for a valid request with an id that was not found', (done) => {
     request('localhost:3000/api')
       .put('/?pokemon=ivysaur')
