@@ -3,7 +3,7 @@
 const car = require('../model/car');
 const response = require('router').response;
 
-const carList = {);
+const carList = {};
 
 let testID = '123';
 carList[testID] =new car('test',322);

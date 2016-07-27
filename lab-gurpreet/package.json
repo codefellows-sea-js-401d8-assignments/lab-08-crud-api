@@ -12,6 +12,7 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "chai-http": "^3.0.0",
     "gulp": "^3.9.1",
     "mocha": "^2.5.3"
   },
