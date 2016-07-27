@@ -37,9 +37,4 @@ gulp.task('test', () => {
   .pipe(mocha({reporter: 'nyan'}));
 });
 
-gulp.task('test2', () => {
-  return gulp.src('./test/test2.js', {read:false})
-  .pipe(mocha({reporter: 'nyan'}));
-});
-
-gulp.task('default', ['lint', 'test', 'test2']);
+gulp.task('default', ['lint', 'test']);
