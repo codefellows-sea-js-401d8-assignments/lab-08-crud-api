@@ -3,7 +3,6 @@
 const http = require('http');
 const Router = require('./lib/router');
 const routes = require('./route/routes');
-
 let router = new Router('/api');
 
 routes(router);

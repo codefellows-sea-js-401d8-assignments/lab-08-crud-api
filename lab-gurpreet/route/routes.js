@@ -1,8 +1,7 @@
 'use strict';
 
 const car = require('../model/car');
-const response = require('router').response;
-
+const response = require('../lib/router').response;
 const carList = {};
 
 let testID = '123';
@@ -22,6 +21,7 @@ module.exports = function(router) {
   });
 
   router.post('/car', (req, res) => {
+    console.log(req.body);
     if(req.body && req.body.name && req.body.model) {
       let newCar = new car(req.body.name, req.body.model);
       carList[newCar.id] = newCar;

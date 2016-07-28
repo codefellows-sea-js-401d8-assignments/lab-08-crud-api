@@ -56,7 +56,8 @@ describe('testing route module', function(){
       request('localhost:3000')
           .post('/api/car')
           .end(function(err, res) {
-            expect(res).to.have.status(400);
+            // debugger;
+            expect(res.status).to.eql(400);
             expect(res.text).to.have.string('bad request');
             done();
           });
@@ -69,7 +70,7 @@ describe('testing route module', function(){
           .post('/api/car')
           .send({name: 'newTestCar', model: 322})
           .end(function(err, res) {
-            expect(res).to.have.status(200);
+            expect(res.status).to.eql(200);
             expect(res.body).to.have.property('name').to.be.a('string').and.to.match(/^newTestCar$/);
             expect(res.body).to.have.property('model').to.be.a('number').and.to.match(/^322$/);
             done();

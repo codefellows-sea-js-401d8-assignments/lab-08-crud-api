@@ -1,5 +1,8 @@
 'use strict';
 
+const url = require('url');
+const bodyParser = require('./body_parser');
+
 let methods = ['get', 'post', 'put', 'patch', 'delete'];
 let Router = module.exports = exports = function(baseUrl){
   this.baseUrl = baseUrl;
@@ -17,14 +20,26 @@ methods.forEach((method) => {
 
 Router.prototype.route = function(){
   return (req, res) => {
-    if (typeof this.routes[req.method][req.url] === 'function') {
-      this.routes[req.method][req.url](req, res);
-    }else{
-      res.writeHead(404, {
-        'Content-Type': 'text/pain'
-      });
-      res.write('that page does not exist');
-      res.end();
-    }
+    bodyParser(req)
+    .then(() => {
+      req.url = url.parse(req.url, true);
+      if (typeof this.routes[req.method][req.url.pathname] === 'function') {
+        this.routes[req.method][req.url.pathname](req, res);
+      }else{
+        res.writeHead(404, {
+          'Content-Type': 'text/pain'
+        });
+        res.write('that page does not exist');
+        res.end();
+      }
+    });
+  };
+};
+
+Router.response = function(status, message) {
+  return function(res) {
+    res.writeHead(status, { 'Content-Type': 'application/json' });
+    if (message) res.write(JSON.stringify(message));
+    res.end();
   };
 };
