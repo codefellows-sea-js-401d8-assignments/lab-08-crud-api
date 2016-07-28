@@ -1,0 +1,24 @@
+{
+  "name": "resource-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "chai-http": "^3.0.0",
+    "gulp": "^3.9.1",
+    "mocha": "^2.5.3"
+  },
+  "dependencies": {
+    "chai": "^3.5.0",
+    "gulp-eslint": "^3.0.1",
+    "node-uuid": "^1.4.7"
+  }
+}
