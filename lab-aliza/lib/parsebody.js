@@ -1,24 +1,21 @@
 'use strict';
 
-const bodyParser = function(req) {
+module.exports = exports = function(req){
   return new Promise((resolve, reject) => {
-    if (req.method === 'GET' || req.method === 'POST' || req.method === 'DELETE') {
-      let jsonString = '';
+    if (req.method === 'POST') {
+      req.body = '';
       req.on('data', (data) => {
-        jsonString = jsonString + data.toString();
+        req.body += data;
       });
-
-      req.on('end', () => {
-        try {
-          let parsed = JSON.parse(jsonString);
-          resolve(parsed);
-        } catch(e) {
-          reject(e);
+      req.on('data', () => {
+        try{
+          req.body = JSON.parse(req.body);
+          resolve();
+        } catch (err){
+          reject(err);
         }
       });
     }
     resolve();
   });
 };
-
-module.exports = bodyParser;

@@ -1,12 +1,10 @@
 'use strict';
 
 const http = require('http');
-const crudController = require('./controller/crudcontroller.js');
+const Router = require('./controller/router');
+const crudRoutes = require('./route/crudroutes');
+let router = new Router('/api');
+let port = 3000;
 
-let server = http.createServer(
-  crudController()
-);
-
-server.listen(3000, () => {
-  console.log('Server up at 3000');
-});
+crudRoutes(router);
+module.exports = http.createServer(router.route()).listen(port, () => console.log('server up at ' + port));
