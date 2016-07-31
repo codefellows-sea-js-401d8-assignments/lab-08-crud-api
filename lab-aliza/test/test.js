@@ -17,7 +17,7 @@ describe('POST testing', () => {
       .end(function(err, res) {
         expect(err).to.eql(null);
         expect(res).to.have.status(200);
-        expect(res.body).to.include.keys('id', 'name', 'creationDate');
+        expect(res.body).to.include.keys('id', 'name', 'creationTime');
         expect(res.body.name).to.eql('aliza');
         done();
       });

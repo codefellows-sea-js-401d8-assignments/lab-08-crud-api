@@ -37,9 +37,13 @@ Router.prototype.route = function(){
 };
 
 Router.response = function(status, message) {
-  return function(res) {
-    res.writeHead(status, { 'Content-Type': 'application/json' });
-    if (message) res.write(JSON.stringify(message));
+  return (res) => {
+    res.writeHead(status, {
+      'Content-Type': 'application/json'
+    });
+    if (message){
+      res.write(JSON.stringify(message));
+    }
     res.end();
   };
 };
