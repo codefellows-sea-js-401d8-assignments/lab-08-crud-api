@@ -24,10 +24,10 @@ describe('POST testing', () => {
   });
   it('test POST 400', (done) => {
     request(server)
-    .post('/api/user')
-    .send({
-      blah: 'blah'
-    })
+      .post('/api/user')
+      .send({
+        blah: 'blah'
+      })
     .end(function(err, res) {
       expect(res).to.have.status(400);
       expect(res.body).to.eql('bad request');

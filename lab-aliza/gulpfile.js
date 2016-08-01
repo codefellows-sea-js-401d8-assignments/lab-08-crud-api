@@ -7,47 +7,9 @@ const appFiles = ['./lib/*.js', './*.js', './route/*.js', './model/*.js', './con
 
 gulp.task('eslint', () => {
   gulp.src(appFiles)
-    .pipe(eslint({
-      rules: {
-        'no-console': 0,
-        'indent': [
-          2,
-          2
-        ],
-        'quotes': [
-          2,
-          'single'
-        ],
-        'linebreak-style': [
-          2,
-          'unix'
-        ],
-        'semi': [
-          2,
-          'always'
-        ]
-      },
-      envs: [
-        'es6',
-        'node',
-        'browser'
-      ],
-      globals: [
-        'describe',
-        'it',
-        'beforeEach',
-        'afterEach',
-        'before',
-        'after'
-      ],
-      ecmaFeatures: {
-        'modules': true,
-        'experimentalObjectRestSpread': true,
-        'impliedStrict': true
-      },
-      extends: 'eslint:recommended'
-    }))
-  .pipe(eslint.format());
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError());
 });
 
 gulp.task('mocha', () => {
