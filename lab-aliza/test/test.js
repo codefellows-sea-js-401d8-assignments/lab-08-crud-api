@@ -28,11 +28,11 @@ describe('POST testing', () => {
       .send({
         blah: 'blah'
       })
-    .end(function(err, res) {
-      expect(res).to.have.status(400);
-      expect(res.body).to.eql('bad request');
-      done();
-    });
+      .end(function(err, res) {
+        expect(res).to.have.status(400);
+        expect(res.body).to.eql('bad request');
+        done();
+      });
   });
 });
 
@@ -44,10 +44,10 @@ describe('GET testing', () => {
       .send({
         name: 'aliza'
       })
-    .end(function(err, res){
-      users.id = res.body.id;
-      done();
-    });
+      .end(function(err, res){
+        users.id = res.body.id;
+        done();
+      });
   });
   it('test GET 404', (done) => {
     request(server)
