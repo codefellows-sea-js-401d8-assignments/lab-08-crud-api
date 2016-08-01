@@ -21,18 +21,18 @@ methods.forEach((method) => {
 Router.prototype.route = function(){
   return (req, res) => {
     bodyParser(req)
-    .then(() => {
-      req.url = url.parse(req.url, true);
-      if (typeof this.routes[req.method][req.url.pathname] === 'function') {
-        this.routes[req.method][req.url.pathname](req, res);
-      }else{
-        res.writeHead(404, {
-          'Content-Type': 'text/pain'
-        });
-        res.write('not found');
-        res.end();
-      }
-    });
+      .then(() => {
+        req.url = url.parse(req.url, true);
+        if (typeof this.routes[req.method][req.url.pathname] === 'function') {
+          this.routes[req.method][req.url.pathname](req, res);
+        }else{
+          res.writeHead(404, {
+            'Content-Type': 'text/pain'
+          });
+          res.write('not found');
+          res.end();
+        }
+      });
   };
 };
 
