@@ -13,6 +13,7 @@ module.exports = exports = function(req, res) {
             'Content-Type': 'text/plain'
           });
           res.write('error, no body found\n');
+          res.end();
         }
         let parsedBody = JSON.parse(body);
         resolve(parsedBody);
