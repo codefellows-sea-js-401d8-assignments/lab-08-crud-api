@@ -27,7 +27,6 @@ describe('testing http server', () => {
     .end(function(err, res) {
       expect(err).to.eql(null);
       expect(res).to.have.status(200);
-      expect(res.name).to.eql('keiran');
       done();
     });
   });
