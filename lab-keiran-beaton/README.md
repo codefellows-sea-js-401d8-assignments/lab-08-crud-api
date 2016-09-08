@@ -6,7 +6,7 @@ From the root directory, run `npm i` in the command line to install all necessar
 
 ## Using The App
 
-To add a user make a post request with an object with properties of name and age to 'http://localhost:3000/api/user'
+To add a user make a post request with an object with properties of name and age to 'http://localhost:3000/api?user=firstuser'
 
 to retrieve information, make a get request to ''http://localhost:3000/user?name=variable' where variable is the value of the name property on the user you are trying to retrieve
 

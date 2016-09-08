@@ -9,8 +9,9 @@ let testFiles = ['./test/*.js'];
 let scriptFiles = ['./lib/*.js', './model/*.js'];
 
 gulp.task('lint', () => {
-  return gulp.src([scriptFiles, testFiles])
-  .pipe(eslint());
+  return gulp.src(scriptFiles)
+  .pipe(eslint())
+  .pipe(eslint.format());
 });
 
 gulp.task('test', () => {
@@ -23,7 +24,7 @@ gulp.task('start', () => {
 });
 
 gulp.task('watch', () => {
-  gulp.watch([scriptFiles, testFiles], ['lint', 'test']);
+  gulp.watch([scriptFiles], ['lint', 'test']);
 });
 
 gulp.task('default', ['lint', 'test']);
