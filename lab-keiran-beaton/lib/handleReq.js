@@ -15,7 +15,7 @@ module.exports = exports = function(req, res) {
       res.writeHead(200, {
         'Content-Type': 'application/json'
       });
-      userPool[uuid.v4()] = new User(data.name, data.type);
+      userPool[uuid.v4()] = new User(data.name, data.age);
       console.log(userPool);
       res.write('Done writing new user. \r\n');
       res.end();

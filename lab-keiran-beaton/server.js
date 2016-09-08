@@ -6,6 +6,6 @@ const serverPort = 3000;
 
 let server = http.createServer(handleReq);
 
-server.listen(serverPort, () => {
+module.exports = exports = server.listen(serverPort, () => {
   console.log('server up on ' + serverPort);
 });
