@@ -6,9 +6,19 @@ From the root directory, run `npm i` in the command line to install all necessar
 
 ## Using The App
 
-To add a user make a post request with an object with properties of name and age to 'http://localhost:3000/api?user=firstuser'
+- To start the server, run `node server.js`.
 
-to retrieve information, make a get request to ''http://localhost:3000/user?name=variable' where variable is the value of the name property on the user you are trying to retrieve
+  - To upload initial data onto the server, use `curl  localhost:3000/api/?pokemon=rhyhorn -X POST -d '{"name": "rhyhorn", "type": "ground", "evolved": "rhydon"}'`
+
+  - To then "GET" that data, use `curl  localhost:3000/api/?pokemon=rhyhorn -X GET`.
+
+  - To update data already on server, use a "PUT" or "PATCH" request `curl  localhost:3000/api/?pokemon=rhyhorn -X PUT -d '{"name": "rhyhorn", "type": "rock", "final evolution": "rhydon"}'`
+
+    - To then retrieve the updated data, simply perform a "GET" `curl  localhost:3000/api/?pokemon=rhyhorn -X GET`
+
+  - To "DELETE" data from the server, use `curl  localhost:3000/api/?pokemon=rhyhorn -X DELETE`
+
+  - To view all Pokemon currently on the server, use `curl  localhost:3000/api/pokemon/all -X GET`
 
 ## Testing
 

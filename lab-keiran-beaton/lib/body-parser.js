@@ -1,24 +1,25 @@
 'use strict';
 
-module.exports = exports = function(req, res) {
+module.exports = exports = function(request, response) {
   return new Promise((resolve, reject) => {
     let body = '';
-    req.on('data', (data) => {
+    request.on('data', (data) => {
       body += data;
     });
-    req.on('end', () => {
+
+    request.on('end', () => {
       try {
         if (body === '') {
-          res.writeHead(400, {
+          response.writeHead(400, {
             'Content-Type': 'text/plain'
           });
-          res.write('error, no body found\n');
-          res.end();
+          response.write('400, no body found\n');
+          response.end();
         }
         let parsedBody = JSON.parse(body);
         resolve(parsedBody);
-      } catch(err) {
-        reject(err);
+      } catch (error) {
+        reject(error);
       }
     });
   });

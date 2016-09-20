@@ -2,8 +2,9 @@
 
 const uuid = require('node-uuid');
 
-module.exports = exports = function User(input) {
+module.exports = exports = function(input) {
   this.name = input.name;
-  this.age = input.age;
+  this.type = input.type;
+  this.evolved = input.evolved;
   this.uuid = uuid.v4();
 };

@@ -4,7 +4,7 @@ const http = require('http');
 const Constructor = require('./model/constructor');
 const bodyParser = require('./lib/body-parser');
 const urlParser = require('./lib/url-parser');
-const serverPort = 3000;
+const serverPort = 5000;
 
 let all = {
   charmander: {
